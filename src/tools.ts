@@ -122,7 +122,7 @@ export default class Tools {
         const sortedParameterKeys = (
             Object.keys(parameters) as (keyof Parameters)[]
         )
-            .filter((key) => parameters[key])
+            .filter((key) => parameters[key] != undefined)
             .sort((a, b) => {
                 const first = ["filepath", "filename", "uid", "daily"];
                 const last = ["data", "eval"];

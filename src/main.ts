@@ -23,8 +23,7 @@ import Handlers from "./handlers";
 import { CommandModal } from "./modals/command_modal";
 import { EnterDataModal } from "./modals/enter_data_modal";
 import { FileModal } from "./modals/file_modal";
-import { ReplaceModal } from "./modals/replace_modal";
-import { SearchModal } from "./modals/search_modal";
+import { SearchAndReplaceModal } from "./modals/search_and_replace_modal";
 import { SettingsTab } from "./settings";
 import Tools from "./tools";
 import {
@@ -33,7 +32,6 @@ import {
     FileModalData,
     OpenMode,
     Parameters,
-    SearchModalData,
 } from "./types";
 import {
     getEndAndBeginningOfBlock,
@@ -109,13 +107,10 @@ export default class AdvancedURI extends Plugin {
                 );
                 fileModal.open();
                 fileModal.onChooseItem = (filePath: FileModalData) => {
-                    const searchModal = new SearchModal(this);
-                    searchModal.open();
-                    searchModal.onChooseSuggestion = (
-                        item: SearchModalData
-                    ) => {
-                        new ReplaceModal(this, item, filePath?.source).open();
-                    };
+                    new SearchAndReplaceModal(
+                        this,
+                        filePath?.source
+                    ).open();
                 };
             },
         });

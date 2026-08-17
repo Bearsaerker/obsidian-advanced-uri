@@ -121,13 +121,6 @@ export interface FileModalData {
     display: string;
 }
 
-export interface EnterData {
-    mode: string;
-    data: string;
-    display: string;
-    func: () => void;
-}
-
 export interface AdvancedURISettings {
     openFileOnWrite: boolean;
     openFileOnWriteInNewPane: boolean;
@@ -218,12 +211,6 @@ export type OpenMode =
 export interface HookParameters {
     "x-success": string;
     "x-error": string;
-}
-
-export interface SearchModalData {
-    source: string;
-    display: string;
-    isRegEx: boolean;
 }
 
 export interface CanvasView extends View {
