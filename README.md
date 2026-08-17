@@ -43,7 +43,7 @@ If the link does not work, open `Browse community plugins` and search for `Advan
 ### From GitHub
 
 1. Download the [latest release](https://github.com/Vinzent03/obsidian-advanced-uri/releases/latest).
-2. Move `manifest.json` and `main.js` to `<vault>/.obsidian/plugins/obsidian-advanced-uri`.
+2. Move `manifest.json`, `styles.css` and `main.js` to `<vault>/.obsidian/plugins/obsidian-advanced-uri`.
 3. Reload Obsidian.
 4. Open `Settings -> Community plugins` and disable `Restricted mode`.
 5. Enable `Advanced URI`.
