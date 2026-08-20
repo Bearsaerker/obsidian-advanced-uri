@@ -11,6 +11,7 @@ import { FileModal } from "./modals/file_modal";
 import Tools from "./tools";
 import {
     CanvasView,
+    LineageApi,
     MetadataEditor,
     MetadataFocusMode,
     Parameters,
@@ -401,6 +402,29 @@ export default class Handlers {
                 file: parameters.filepath,
                 parameters: parameters,
             });
+        }
+        // The Lineage plugin integration: when the target file is a Lineage
+        // document, open the cards that contain the searched text instead of
+        // the built-in find bar (which does not work in the Lineage view).
+        const lineage = this.app.plugins.plugins["lineage"] as
+            | LineageApi
+            | undefined;
+        if (lineage && typeof lineage.findAndOpenCards === "function") {
+            const matchCount = await lineage.findAndOpenCards(
+                parameters.search,
+                parameters.filepath
+            );
+            if (matchCount >= 0) {
+                new Notice(
+                    matchCount === 0
+                        ? "No Lineage cards contain the searched text"
+                        : `Opened ${matchCount} matching Lineage card${
+                              matchCount === 1 ? "" : "s"
+                          }`
+                );
+                this.plugin.success(parameters);
+                return;
+            }
         }
         const view = this.app.workspace.getActiveViewOfType(FileView);
         view.currentMode.showSearch();

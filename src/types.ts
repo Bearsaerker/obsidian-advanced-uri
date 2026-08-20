@@ -229,3 +229,23 @@ export interface CanvasView extends View {
         markViewportChanged(): void;
     };
 }
+
+/**
+ * Public API surface exposed by the Lineage plugin that Advanced URI
+ * integrates with to open the cards containing searched text.
+ */
+export interface LineageApi {
+    /**
+     * Open all Lineage cards that contain `searchText` in the document at
+     * `filepath` and focus the first matching card.
+     *
+     * @param searchText - The text to search for in the cards
+     * @param filepath - Optional path of the Lineage document to search
+     * @returns Number of matching cards, or `-1` if no Lineage document/view
+     *          could be used.
+     */
+    findAndOpenCards?: (
+        searchText: string,
+        filepath?: string
+    ) => Promise<number>;
+}
